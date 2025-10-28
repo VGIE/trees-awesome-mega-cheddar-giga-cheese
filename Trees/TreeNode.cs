@@ -93,14 +93,15 @@ namespace Trees
             //TODO #8: Return the node that contains this value (it might be this node or a child). Apply recursively
             if (Value.Equals(value))
                 return this;
+            TreeNode<T> encontrado = null;
             for (int i = 0; i < Children.Count(); i++)
-                {
-                    if (Children.Get(i).Value.Equals(value))
-                        return Children.Get(i);
-                    else
-                        Children.Get(i).Find(value);
-                }
-            return null;
+            {
+                if (Children.Get(i).Value.Equals(value))
+                    encontrado = Children.Get(i);
+                else
+                    encontrado = Children.Get(i).Find(value);
+            }
+            return encontrado;
         }
 
 
