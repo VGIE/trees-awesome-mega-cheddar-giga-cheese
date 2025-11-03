@@ -98,7 +98,7 @@ namespace Trees
             {
                 if (Children.Get(i).Value.Equals(value))
                     encontrado = Children.Get(i);
-                else
+                else if(encontrado == null)
                     encontrado = Children.Get(i).Find(value);
             }
             return encontrado;
