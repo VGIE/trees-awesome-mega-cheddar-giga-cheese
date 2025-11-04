@@ -140,8 +140,6 @@ namespace BinaryTrees
             //so this method returns the node with which this node needs to be replaced. If this node isn't the
             //one we are looking for, we will return this, so that the parent node can replace LeftChild/RightChild
             //with the same node it had.
-            BinaryTreeNode<TKey, TValue> nodeToRemove = null;
-            BinaryTreeNode<TKey, TValue> Parent = null;
             int comparacion = Key.CompareTo(key);
             if (comparacion == 0)
             {
@@ -158,14 +156,14 @@ namespace BinaryTrees
             {
                 if (LeftChild == null)
                     return this;
-                LeftChild = LeftChild.Remove(Key);
+                LeftChild = LeftChild.Remove(key);
                 return this;
             }
             else
             {
-                if (LeftChild == null)
+                if (RightChild == null)
                     return this;
-                RightChild = RightChild.Remove(Key);
+                RightChild = RightChild.Remove(key);
                 return this;
             }
 

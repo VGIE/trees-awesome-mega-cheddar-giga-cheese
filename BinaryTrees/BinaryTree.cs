@@ -1,5 +1,6 @@
 
 using System;
+using System.Security.Cryptography;
 namespace BinaryTrees
 {
 
@@ -79,8 +80,23 @@ namespace BinaryTrees
             //          - Create a new tree node with the key/values in the center of the [start,end] section of the arrays
             //          - Recursive call to AddBalanced with the elements on the left of center [start,center-1]. Add the result to the new node as LeftNode
             //          - Recursive call to AddBalanced with the elements on the right of center [center+1,end]. Add the result to the new node as RightNode
+            int center = (start + end) / 2;
+            BinaryTreeNode<TKey, TValue> newNode = new BinaryTreeNode<TKey, TValue>(keys[center], values[center]);
+            if (start + 1 < end)
+            {
+                newNode.LeftChild = AddBalanced(keys, values, start, center - 1);
+                newNode.RightChild = AddBalanced(keys, values, center + 1, end);
+            }
+            if (start < end)
+            {
+                if (center == start)
+                    newNode.LeftChild = AddBalanced(keys, values, start, center - 1);
+                if (center == end)
+                    newNode.RightChild = AddBalanced(keys, values, center + 1, end);
+            }
+
             
-            return null;
+            return newNode;
             
         }
 
